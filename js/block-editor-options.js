@@ -58,7 +58,11 @@ const addLightboxAttributes = (settings, name) => {
     showKeywords: {
       type: 'boolean',
       default: true
-    }
+    },
+    showGps: {
+      type: 'boolean',
+      default: true
+    },
   });
 
   return settings;
@@ -83,6 +87,7 @@ const addLightboxControls = createHigherOrderComponent(BlockEdit => {
     const { showExif } = props.attributes;
     const { showFileInfo } = props.attributes;
     const { showKeywords } = props.attributes;
+    const { showGps } = props.attributes;
 
     // Add class to block. This is used only in the editor, in cases where the preview needs to change based on attribute.
     if (lightboxEnabled) {
@@ -169,6 +174,15 @@ const addLightboxControls = createHigherOrderComponent(BlockEdit => {
               }
             }),
             React.createElement(CheckboxControl, {
+              label: __('GPS Location'),
+              checked: showGps,
+              onChange: showGpsSelection => {
+                props.setAttributes({
+                  showGps: showGpsSelection
+                });
+              }
+            }),
+            React.createElement(CheckboxControl, {
               label: __('File information'),
               checked: showFileInfo,
               onChange: showFileInfoSelection => {
@@ -208,6 +222,7 @@ const addLightboxProps = (saveElementProps, blockType, attributes) => {
   lightboxConfig['showExif'] = attributes.showExif;
   lightboxConfig['showFileInfo'] = attributes.showFileInfo;
   lightboxConfig['showKeywords'] = attributes.showKeywords;
+  lightboxConfig['showGps'] = attributes.showGps;
 
   assign(saveElementProps, {
     'acclectic-lightbox-config': JSON.stringify(lightboxConfig)

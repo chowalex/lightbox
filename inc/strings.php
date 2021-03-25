@@ -32,6 +32,7 @@ class Strings
             'height' => __('Height', ACCLECTIC_LIGHTBOX_TEXT_DOMAIN),
             'artist' => __('Artist', ACCLECTIC_LIGHTBOX_TEXT_DOMAIN),
             'colorSpace' => __('Color Space', ACCLECTIC_LIGHTBOX_TEXT_DOMAIN),
+            'location' => __('Location', ACCLECTIC_LIGHTBOX_TEXT_DOMAIN),
             'untitled' => __('Untitled', ACCLECTIC_LIGHTBOX_TEXT_DOMAIN),
             'ok' => __('OK', ACCLECTIC_LIGHTBOX_TEXT_DOMAIN),
             'cancel' => __('Cancel', ACCLECTIC_LIGHTBOX_TEXT_DOMAIN),

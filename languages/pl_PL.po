@@ -1,196 +1,185 @@
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Acclectic Media Folders\n"
-"POT-Creation-Date: 2021-03-13 11:51-0800\n"
-"PO-Revision-Date: 2021-02-13 11:05-0800\n"
-"Last-Translator: \n"
-"Language-Team: Acclectic Media\n"
-"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
-"X-Poedit-Basepath: ..\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;__esc_html\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Lightbox\n"
+"Language: pl\n"
 
 #: inc/strings.php:9
 msgid "Keywords"
-msgstr ""
+msgstr "Słowa kluczowe"
 
 #: inc/strings.php:10
 msgid "Camera Info"
-msgstr ""
+msgstr "Informacje o aparacie"
 
 #: inc/strings.php:11
 msgid "File Info"
-msgstr ""
+msgstr "Informacja o pliku"
 
 #: inc/strings.php:12
 msgid "Share link copied to clipboard."
-msgstr ""
+msgstr "Udostępnij link skopiowany do schowka."
 
 #: inc/strings.php:13
 msgid "File"
-msgstr ""
+msgstr "Plik"
 
 #: inc/strings.php:14
 msgid "Original File"
-msgstr ""
+msgstr "Oryginalny plik"
 
 #: inc/strings.php:15
 msgid "Camera Make"
-msgstr ""
+msgstr "Marka aparatu"
 
 #: inc/strings.php:16
 msgid "Camera Model"
-msgstr ""
+msgstr "Model aparatu"
 
 #: inc/strings.php:17
 msgid "Lens"
-msgstr ""
+msgstr "Obiektyw"
 
 #: inc/strings.php:18
 msgid "Focal Length"
-msgstr ""
+msgstr "Długość ogniskowa"
 
 #: inc/strings.php:19
 msgid "Focal Length in 35mm"
-msgstr ""
+msgstr "Ogniskowa w 35 mm"
 
 #: inc/strings.php:20
 msgid "Aperture"
-msgstr ""
+msgstr "Otwór"
 
 #: inc/strings.php:21
 msgid "Shutter Speed"
-msgstr ""
+msgstr "Czas otwarcia migawki"
 
 #: inc/strings.php:22
 msgid "ISO"
-msgstr ""
+msgstr "ISO"
 
 #: inc/strings.php:23
 msgid "Exposure Program"
-msgstr ""
+msgstr "Program ekspozycji"
 
 #: inc/strings.php:24
 msgid "Exposure Bias"
-msgstr ""
+msgstr "Odchylenie ekspozycji"
 
 #: inc/strings.php:25
 msgid "Exposure Mode"
-msgstr ""
+msgstr "Tryb ekspozycji"
 
 #: inc/strings.php:26
 msgid "White Balance"
-msgstr ""
+msgstr "Balans bieli"
 
 #: inc/strings.php:27
 msgid "Metering Mode"
-msgstr ""
+msgstr "Tryb pomiaru"
 
 #: inc/strings.php:28
 msgid "Flash"
-msgstr ""
+msgstr "Lampa błyskowa"
 
 #: inc/strings.php:29
 msgid "Taken"
-msgstr ""
+msgstr "Wzięty"
 
 #: inc/strings.php:30
 msgid "Modified"
-msgstr ""
+msgstr "Zmodyfikowano"
 
 #: inc/strings.php:31
 msgid "Width"
-msgstr ""
+msgstr "Szerokość"
 
 #: inc/strings.php:32
 msgid "Height"
-msgstr ""
+msgstr "Wysokość"
 
 #: inc/strings.php:33
 msgid "Artist"
-msgstr ""
+msgstr "Artysta"
 
 #: inc/strings.php:34
 msgid "Color Space"
-msgstr ""
+msgstr "Przestrzeń kolorów"
 
 #: inc/strings.php:35
 msgid "Untitled"
-msgstr ""
+msgstr "Nieuprawny"
 
 #: inc/strings.php:36
 msgid "OK"
-msgstr ""
+msgstr "ok"
 
 #: inc/strings.php:37
 msgid "Cancel"
-msgstr ""
+msgstr "Anuluj"
 
 #: inc/strings.php:38
 msgid "Internal Error"
-msgstr ""
+msgstr "Błąd wewnętrzny"
 
 #: inc/strings.php:39
 msgid "Please contact customer service if this issue persists."
-msgstr ""
+msgstr "Skontaktuj się z obsługą klienta, jeśli problem będzie się powtarzał."
 
 #: js/block-editor-options.js:12
 msgid "Light"
-msgstr ""
+msgstr "Lekki"
 
 #: js/block-editor-options.js:15
 msgid "Dark"
-msgstr ""
+msgstr "Ciemny"
 
 #: js/block-editor-options.js:104
 msgid "Lightbox Options"
-msgstr ""
+msgstr "Opcje Lightbox"
 
 #: js/block-editor-options.js:108
 msgid "Enabled"
-msgstr ""
+msgstr "Włączone"
 
 #: js/block-editor-options.js:109
-msgid ""
-"Enables Lightbox for this gallery. If enabled, Lightbox will override "
-"links specified above."
-msgstr ""
+msgid "Enables Lightbox for this gallery. If enabled, Lightbox will override links specified above."
+msgstr "Włącza Lightbox dla tej galerii. Jeśli ta opcja jest włączona, lightbox zastępuje linki określone powyżej."
 
 #: js/block-editor-options.js:120
 msgid "Theme"
-msgstr ""
+msgstr "Motyw"
 
 #: js/block-editor-options.js:130
 msgid "Show on image overlay if available:"
-msgstr ""
+msgstr "Pokaż na nakładce obrazu, jeśli jest dostępna:"
 
 #: js/block-editor-options.js:133
 msgid "Title"
-msgstr ""
+msgstr "Tytuł"
 
 #: js/block-editor-options.js:142
 msgid "Caption"
-msgstr ""
+msgstr "Podpis"
 
 #: js/block-editor-options.js:151
 msgid "Show in side bar if available:"
-msgstr ""
+msgstr "Pokaż na pasku bocznym, jeśli jest dostępny:"
 
 #: js/block-editor-options.js:154
 msgid "Photo keywords"
-msgstr ""
+msgstr "Słowa kluczowe dotyczące zdjęć"
 
 #: js/block-editor-options.js:163
 msgid "EXIF metadata"
-msgstr ""
+msgstr "Metadane EXIF"
 
 #: js/block-editor-options.js:172
 msgid "File information"
-msgstr ""
+msgstr "Informacje o pliku"
+

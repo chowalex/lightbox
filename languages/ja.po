@@ -1,196 +1,185 @@
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Acclectic Media Folders\n"
-"POT-Creation-Date: 2021-03-13 11:51-0800\n"
-"PO-Revision-Date: 2021-02-13 11:05-0800\n"
-"Last-Translator: \n"
-"Language-Team: Acclectic Media\n"
-"Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.2\n"
-"X-Poedit-Basepath: ..\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;__esc_html\n"
-"X-Poedit-SearchPath-0: .\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: Lightbox\n"
+"Language: ja\n"
 
 #: inc/strings.php:9
 msgid "Keywords"
-msgstr ""
+msgstr "キーワード"
 
 #: inc/strings.php:10
 msgid "Camera Info"
-msgstr ""
+msgstr "カメラ情報"
 
 #: inc/strings.php:11
 msgid "File Info"
-msgstr ""
+msgstr "ファイル情報"
 
 #: inc/strings.php:12
 msgid "Share link copied to clipboard."
-msgstr ""
+msgstr "クリップボードにコピーされた共有リンク。"
 
 #: inc/strings.php:13
 msgid "File"
-msgstr ""
+msgstr "ファイル"
 
 #: inc/strings.php:14
 msgid "Original File"
-msgstr ""
+msgstr "元のファイル"
 
 #: inc/strings.php:15
 msgid "Camera Make"
-msgstr ""
+msgstr "カメラメーカー"
 
 #: inc/strings.php:16
 msgid "Camera Model"
-msgstr ""
+msgstr "カメラモデル"
 
 #: inc/strings.php:17
 msgid "Lens"
-msgstr ""
+msgstr "レンズ"
 
 #: inc/strings.php:18
 msgid "Focal Length"
-msgstr ""
+msgstr "焦点距離"
 
 #: inc/strings.php:19
 msgid "Focal Length in 35mm"
-msgstr ""
+msgstr "35mmでの焦点距離"
 
 #: inc/strings.php:20
 msgid "Aperture"
-msgstr ""
+msgstr "絞り"
 
 #: inc/strings.php:21
 msgid "Shutter Speed"
-msgstr ""
+msgstr "シャッター速度"
 
 #: inc/strings.php:22
 msgid "ISO"
-msgstr ""
+msgstr "ISO"
 
 #: inc/strings.php:23
 msgid "Exposure Program"
-msgstr ""
+msgstr "ばく露プログラム"
 
 #: inc/strings.php:24
 msgid "Exposure Bias"
-msgstr ""
+msgstr "露出補正"
 
 #: inc/strings.php:25
 msgid "Exposure Mode"
-msgstr ""
+msgstr "露出モード"
 
 #: inc/strings.php:26
 msgid "White Balance"
-msgstr ""
+msgstr "ホワイトバランス"
 
 #: inc/strings.php:27
 msgid "Metering Mode"
-msgstr ""
+msgstr "測光モード"
 
 #: inc/strings.php:28
 msgid "Flash"
-msgstr ""
+msgstr "閃光"
 
 #: inc/strings.php:29
 msgid "Taken"
-msgstr ""
+msgstr "撮影"
 
 #: inc/strings.php:30
 msgid "Modified"
-msgstr ""
+msgstr "変更"
 
 #: inc/strings.php:31
 msgid "Width"
-msgstr ""
+msgstr "幅"
 
 #: inc/strings.php:32
 msgid "Height"
-msgstr ""
+msgstr "高さ"
 
 #: inc/strings.php:33
 msgid "Artist"
-msgstr ""
+msgstr "アーティスト"
 
 #: inc/strings.php:34
 msgid "Color Space"
-msgstr ""
+msgstr "色空間"
 
 #: inc/strings.php:35
 msgid "Untitled"
-msgstr ""
+msgstr "無題"
 
 #: inc/strings.php:36
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: inc/strings.php:37
 msgid "Cancel"
-msgstr ""
+msgstr "キャンセル"
 
 #: inc/strings.php:38
 msgid "Internal Error"
-msgstr ""
+msgstr "内部エラー"
 
 #: inc/strings.php:39
 msgid "Please contact customer service if this issue persists."
-msgstr ""
+msgstr "この問題が解決しない場合は、カスタマーサービスにご連絡ください。"
 
 #: js/block-editor-options.js:12
 msgid "Light"
-msgstr ""
+msgstr "光"
 
 #: js/block-editor-options.js:15
 msgid "Dark"
-msgstr ""
+msgstr "闇"
 
 #: js/block-editor-options.js:104
 msgid "Lightbox Options"
-msgstr ""
+msgstr "ライトボックスオプション"
 
 #: js/block-editor-options.js:108
 msgid "Enabled"
-msgstr ""
+msgstr "有効"
 
 #: js/block-editor-options.js:109
-msgid ""
-"Enables Lightbox for this gallery. If enabled, Lightbox will override "
-"links specified above."
-msgstr ""
+msgid "Enables Lightbox for this gallery. If enabled, Lightbox will override links specified above."
+msgstr "このギャラリーのライトボックスを有効にします。有効にすると、ライトボックスは上記で指定されたリンクを上書きします。"
 
 #: js/block-editor-options.js:120
 msgid "Theme"
-msgstr ""
+msgstr "テーマ"
 
 #: js/block-editor-options.js:130
 msgid "Show on image overlay if available:"
-msgstr ""
+msgstr "可能な場合は画像オーバーレイに表示します。"
 
 #: js/block-editor-options.js:133
 msgid "Title"
-msgstr ""
+msgstr "題名"
 
 #: js/block-editor-options.js:142
 msgid "Caption"
-msgstr ""
+msgstr "キャプション"
 
 #: js/block-editor-options.js:151
 msgid "Show in side bar if available:"
-msgstr ""
+msgstr "可能な場合はサイドバーに表示します。"
 
 #: js/block-editor-options.js:154
 msgid "Photo keywords"
-msgstr ""
+msgstr "写真のキーワード"
 
 #: js/block-editor-options.js:163
 msgid "EXIF metadata"
-msgstr ""
+msgstr "EXIFメタデータ"
 
 #: js/block-editor-options.js:172
 msgid "File information"
-msgstr ""
+msgstr "ファイル情報"
+

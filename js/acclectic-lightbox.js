@@ -4,8 +4,10 @@
 
   const LIGHTBOX_CONFIG_ATTR = 'acclectic-lightbox-config';
   const NUM_PRELOAD_NEIGHBORS = 2;
-  const SLIDESHOW_MS = 1000;
+  const SLIDESHOW_MS = 3000;
   const DEFAULT_TITLE = i18n['untitled'];
+
+  const MAP_ZOOM = 16;
 
   const FULL_SCREEN_EXIT_ICON = 'fullscreen_exit-24px.svg';
   const FULL_SCREEN_ENTER_ICON = 'fullscreen-24px.svg';
@@ -19,6 +21,8 @@
 
   const LIGHT_COLOR = '#ffffff';
   const DARK_COLOR = '#222222';
+
+  const MAPS_API_KEY = "AIzaSyBg4FTvbbgaM2hfdf0eki0taHQ6UVn4A04";
 
   // TODO: implement filter.
   const IMAGE_TYPES = /.+\.(gif|jpe?g|png|webp)/i;
@@ -401,6 +405,9 @@
       document.body.classList.remove('noscroll');
       this.element.classList.remove('visible');
       controller.unbindEventFromElement(document, 'keydown', handlers.keyDown);
+      if (slideshowTimer) {
+        lightbox.pauseSlideshow();
+      }
     },
 
     applyTheme: function (gallery) {
@@ -590,20 +597,22 @@
       let container = jq("#acclectic-lightbox-container #info .info-container")[0];
       let imageExif = gallery.images[index].exif;
 
-      let titleValue = exif.getFirstValueOfTags(['title', 'Object Name'], imageExif);
-      let captionValue = exif.getFirstValueOfTags(['description', 'Caption/Abstract', 'ImageDescription'], imageExif);
+      let titleValue = exif.getFirstDescriptionOfTags(['title', 'Object Name'], imageExif);
+      let captionValue = exif.getFirstDescriptionOfTags(['description', 'Caption/Abstract', 'ImageDescription'], imageExif);
       lightbox.updateTitleAndCaption(gallery, index, titleValue, captionValue);
 
       let title = builder.getTitleSection(titleValue);
       let keywords = builder.getKeywordsSection(exif.getKeywords(imageExif));
       let cameraInfo = builder.getCameraInfoSection(exif.getCameraInfo(imageExif));
       let fileInfo = builder.getFileInfoSection(exif.getFileInfo(imageExif, gallery.images[index].fileInfo));
+      let gpsInfo = builder.getGpsSection(exif.getGpsString(imageExif));
 
       container.innerHTML = '';
       container.appendChild(title);
       if (keywords && gallery.configJson.showKeywords) container.appendChild(keywords);
       if (cameraInfo && gallery.configJson.showExif) container.appendChild(cameraInfo);
       if (fileInfo && gallery.configJson.showFileInfo) container.appendChild(fileInfo);
+      if (gpsInfo && gallery.configJson.showGps) container.appendChild(gpsInfo);
     },
 
     /** Updates the title and caption in the main slider. */
@@ -727,7 +736,7 @@
       img.setAttribute('sizes', controller.getImageSizes(gallery, index));
       img.setAttribute('srcset', controller.getImageSrcSet(gallery, index));
       img.setAttribute('src', controller.getImageSrc(gallery, index));
-      img.onload = function() {
+      img.onload = function () {
         container.removeChild(spinner);
       }
 
@@ -866,6 +875,26 @@
       fileInfo.appendChild(fileValue);
       return fileInfo;
     },
+
+    getGpsSection: function (gpsText) {
+      if (!gpsText) return null;
+
+      let gpsInfo = document.createElement('div');
+      gpsInfo.className = 'info-section';
+      let gpsHeading = document.createElement('div');
+      gpsHeading.className = 'info-heading';
+      gpsHeading.innerText = i18n['location'];
+      let mapFrame = document.createElement('iframe');
+      mapFrame.className = 'gps-iframe';
+
+      let zoom = MAP_ZOOM;
+
+      mapFrame.src = "https://www.google.com/maps/embed/v1/place?key=" + MAPS_API_KEY + "&q=" + gpsText + "&zoom=" + zoom;
+
+      gpsInfo.appendChild(gpsHeading);
+      gpsInfo.appendChild(mapFrame);
+      return gpsInfo;
+    },
   };
 
   var exif = {
@@ -989,10 +1018,29 @@
       return table;
     },
 
+    getGpsString: function (imageExif) {
+      let latitude = ['GPSLatitude'];
+      let latitudeRef = ['GPSLatitudeRef'];
+      let longitude = ['GPSLongitude'];
+      let longitudeRef = ['GPSLongitudeRef'];
+
+      let latitudeValue = exif.getFirstDescriptionOfTags(latitude, imageExif);
+      let latitudeRefValue = exif.getFirstValueOfTags(latitudeRef, imageExif);
+      let longitudeValue = exif.getFirstDescriptionOfTags(longitude, imageExif);
+      let longitudeRefValue = exif.getFirstValueOfTags(longitudeRef, imageExif);
+
+      if (!latitudeValue || !latitudeRefValue || !longitudeValue || !longitudeRefValue) return null;
+
+      let latitudePrefix = latitudeRefValue.toUpperCase().indexOf('N') >= 0 ? '' : '-';
+      let longitudePrefix = longitudeRefValue.toUpperCase().indexOf('E') >= 0 ? '' : '-';;
+      let gpsString = latitudePrefix + latitudeValue + ',' + longitudePrefix + longitudeValue;
+      return gpsString;
+    },
+
     appendRowsToTable: function (table, attributes, imageExif) {
       let numRowsAdded = 0;
       attributes.forEach(attr => {
-        let value = exif.getFirstValueOfTags(attr.tags, imageExif);
+        let value = exif.getFirstDescriptionOfTags(attr.tags, imageExif);
         if (value) {
           let row = exif.getAttributeRow(attr.display, value);
           table.appendChild(row);
@@ -1002,11 +1050,23 @@
       return numRowsAdded;
     },
 
-    getFirstValueOfTags: function (tags, imageExif) {
+    getFirstDescriptionOfTags: function (tags, imageExif) {
       let value = null;
       tags.every(tag => {
         if (imageExif[tag] && imageExif[tag].description) {
           value = imageExif[tag].description;
+          return false; // Stop looping through other tags.
+        }
+        return true;
+      });
+      return value;
+    },
+
+    getFirstValueOfTags: function (tags, imageExif) {
+      let value = null;
+      tags.every(tag => {
+        if (imageExif[tag] && imageExif[tag].value && imageExif[tag].value.length > 0) {
+          value = imageExif[tag].value[0];
           return false; // Stop looping through other tags.
         }
         return true;

@@ -1,55 +1,88 @@
 ﻿=== Acclectic Lightbox ===
 Contributors: acclectic
-Tags: lightbox, gallery, exif, image, photo gallery, photo lightbox, media lightbox
+Tags: lightbox, gallery, exif, gps, photo gallery, map, mapping, image, photography, photo lightbox, media lightbox
 Requires at least: 5.0.0
 Tested up to: 5.7
-Stable tag: 1.0
-Version: 1.0
+Stable tag: 1.1
+Version: 1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.en.html
 Author: acclectic
 Donate link: https://www.acclectic.com/
 
-A configurable lightbox with EXIF support that works with native Wordpress galleries and images.
+A configurable lightbox with EXIF and GPS mapping support that works with native Wordpress galleries and images.
 
 == Description ==
 
-Acclectic Lightbox is an advanced and configurable lightbox that displays images and photos in your Wordpress galleries 
-in full screen, complete with file information and EXIF metadata. Unlike most existing lightboxes, it supports native 
-Wordpress galleries and images, so it will always work and you need not be dependent on third-party gallery plugins. It
-is also highly configurable, and gives you control over almost every aspect of the lightbox's look and feel.
+Acclectic Lightbox is an advanced and configurable lightbox that displays images and photos in your Wordpress galleries in full screen, complete with file information, camera EXIF metadata, and embedded maps showing photo location. Unlike most existing lightboxes, it supports native Wordpress galleries and images, so it will always work and you need not be dependent on third-party gallery plugins. It is also highly configurable, and gives you control over almost every aspect of the lightbox's look and feel.
+
+== Demo ==
+
+See sample lightboxes in action [here](https://www.acclectic.com/wordpress-lightbox).
 
 == Features ==
 
 **EXIF**
-Displays EXIF metadata for each image (if it is available) such as aperture, shutter speed, exposure (and many other 
-tags). You can enable the display of EXIF metadata for each gallery.
+Displays EXIF metadata for each image (if it is available) such as aperture, shutter speed, exposure (and many other tags). You can enable or disable the display of EXIF metadata for each gallery. For a list of all supported EXIF tags, please refer to the plugin's [documentation](https://www.acclectic.com/support/wordpress-lightbox-docs/).
+
+**GPS Mapping**
+Displays an embedded map showing the location at which the image was captured, based on GPS coordinates in the image metadata.
+
+**Native gallery and image support**
+Unlike most existing lightboxes, the Acclectic Lightbox works with native Wordpress galleries and images. This means that you do *not* need to create a custom gallery (with a third-party gallery plugin) in order to use the lightbox. It also means that the lightbox will always work wth Wordpress, and you are not dependent on third-party gallery plugins.
 
 **Configuration**
-You can configure the lightbox directly within the Wordpress block editor. Each image and gallery can have a 
-separate and different configuration.
+You can configure the lightbox directly within the Wordpress block editor. Each image and gallery can have a separate and different configuration.
+
+**Themes**
+Choose between a light or dark theme, conveniently within the block editor. Each image and gallery can have a separate theme.
 
 **Slider**
-Scroll through every image in the gallery using the built-in slider.
+Scroll through every image in the gallery using the built-in slider, controllable by the mouse or keyboard.
 
 **Fullscreen**
 Switch between full-screen and normal views with a convenient mouse or key press.
 
 **Slideshow**
-The lightbox can scroll through images automatically in a slideshow mode. The time between transitions is fully
-configurable from within the block editor, and can be set per gallery.
+The lightbox can scroll through images automatically in slideshow mode.
 
 **Keyboard bindings**
-You can control all of the lightbox's features via the mouse or the keyboard. Scroll through images, play or pause the
-slideshow, or toggle full-screen view with convenient key bindings.
+You can control all of the lightbox's features via the mouse or the keyboard. Scroll through images, play or pause the slideshow, or toggle full-screen view with convenient key bindings.
+
+**File information**
+Displays pertinent information about each image, including file size, date/time taken, and date/time modified. You can enable or disable the display of file information for each gallery.
+
+**Title and caption**
+Displays the title and caption (if they are available). You can enable or disable the display of title and caption for each gallery.
+
+**Keywords**
+Displays the photo keywords (if they are available). You can enable or disable the display of keywords for each gallery.
+
+**Responsive Images**
+To improve image load times, the image displayed is chosen from a set of all available images depending on the viewer's screen size.
 
 **Share**
 [Beta] Get the full URL of the original image for sharing.
+
+**No Limits**
+All supported features are fully available to you with no limits of any kind.
+
+== Screenshots ==
+
+1. The Acclectic Lightbox displaying EXIF metadata and file information.
+2. Configure the lightbox for each gallery directly within the Wordpress block editor.
+3. Dark theme. Choose between a light or dark theme for each gallery or image.
 
 == Frequently Asked Questions ==
 
 = Are there any limits to this plugin? =
 No. All supported features are fully available to you with no limits of any kind.
+
+= Can I disable the lightbox for certain galleries? =
+Yes. Each gallery has an individual configuration in the Wordpress block editor, and you can enable or disable the lightbox functionality for each individual gallery.
+
+= Why is EXIF metadata not being displayed even though the option is enabled? =
+EXIF metadata is displayed only if it is included in the original image, and the original image can be found by the plugin. WordPress resizes every image that you upload, and resized images typically do not contain EXIF metadata. However, the plugin will attempt to recover EXIF metadata by finding the original image. This works in most cases as long as you have not moved or deleted the original image. If you are certain that your original image exists and it contains EXIF metadata, please file a bug with a link to the images in question and we will do our best to investigate.
 
 == Supported Languages ==
 
@@ -71,5 +104,8 @@ Note that the EXIF data being displayed will be in the native language in which 
 
 == Changelog ==
 
-= 1.0 - March 11, 2021 = 
+= 1.1 - March 25, 2021 = 
+- Added GPS mapping support.
+
+= 1.0 - March 13, 2021 = 
 - First public release.

@@ -143,6 +143,12 @@
   font-size: 13px;
 }
 
+#acclectic-lightbox-container #info .gps-iframe {
+  width: 250px;
+  height: 250px;
+  border: 0;
+}
+
 #acclectic-lightbox-container #slider-frame {}
 
 #acclectic-lightbox-container #nav-right {
@@ -150,12 +156,16 @@
   z-index: 16777271;
 }
 
+#acclectic-lightbox-container .lightbox-controls li {
+  line-height: 0px;
+}
+
 #acclectic-lightbox-container .control-icon {
   position: relative;
   width: 25px;
   height: 25px;
   /* margin: auto centers the image horizontally in the div. */
-  margin: 12px auto 12px auto;
+  margin: 12px auto 0px auto;
   clear: both;
   filter: brightness(0) invert(var(--foregroundInvert));
 }
