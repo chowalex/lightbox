@@ -6,7 +6,7 @@ const { PanelBody, SelectControl, CheckboxControl, ToggleControl, Text } = wp.co
 const { addFilter } = wp.hooks;
 const { __ } = wp.i18n;
 
-const enableLightboxOnBlocks = ['core/gallery', 'core/image'];
+const enableLightboxOnBlocks = ['core/gallery', 'core/image', 'acclectic/smart-gallery'];
 
 const THEME_CONTROL_OPTIONS = [{
   label: __('Light'),

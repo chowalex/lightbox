@@ -72,7 +72,7 @@
     },
 
     initializeNativeGalleries: function () {
-      let galleryDoms = jq(".wp-block-gallery, .wp-block-image");
+      let galleryDoms = jq(".wp-block-gallery, .wp-block-image, .acclectic-smart-gallery");
       console.log("Found " + galleryDoms.length + " native galleries.");
 
       // console.log(jq(galleryDoms[0]).attr('acclectic-lightbox-config'));
