@@ -3,8 +3,8 @@ Contributors: acclectic
 Tags: lightbox, gallery, exif, gps, photo gallery, map, mapping, image, photography, photo lightbox, media lightbox
 Requires at least: 5.0.0
 Tested up to: 5.7
-Stable tag: 1.1
-Version: 1.1
+Stable tag: 1.2
+Version: 1.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.en.html
 Author: acclectic
@@ -103,6 +103,9 @@ Acclectic Lightbox is available in these languages:
 Note that the EXIF data being displayed will be in the native language in which it was captured.
 
 == Changelog ==
+
+= 1.2 - Juluy 3, 2021 =
+- Added support for smart galleries.
 
 = 1.1 - March 25, 2021 = 
 - Added GPS mapping support.
