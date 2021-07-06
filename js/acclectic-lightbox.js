@@ -162,7 +162,8 @@
     },
 
     getImageSrcSet: function (gallery, index) {
-      let srcset = gallery.images[index].galleryImgDom.getAttribute('srcset');
+      let srcset = gallery.images[index].galleryImgDom.getAttribute('accsg-srcset');
+      if (!srcset) srcset = gallery.images[index].galleryImgDom.getAttribute('srcset');
       if (!srcset) srcset = '';
       return srcset;
     },
@@ -229,6 +230,11 @@
         unscaledFileName = fileName.replace(scaledRegex, '.');
       } else if (fileName.match(randomSizeRegex)) {
         unscaledFileName = fileName.replace(randomSizeRegex, '.');
+
+        // If the thumbs are post-generated using a plugin, they may be named after scaled, e.g. Foo-scaled-100x200.jpg.
+        if (unscaledFileName.match(scaledRegex)) {
+          unscaledFileName = unscaledFileName.replace(scaledRegex, '.');
+        }
       }
 
       unscaledUrl = url.replace(fileName, unscaledFileName);

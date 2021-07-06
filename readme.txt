@@ -3,8 +3,8 @@ Contributors: acclectic
 Tags: lightbox, gallery, exif, gps, photo gallery, map, mapping, image, photography, photo lightbox, media lightbox
 Requires at least: 5.0.0
 Tested up to: 5.7
-Stable tag: 1.2
-Version: 1.2
+Stable tag: 1.3
+Version: 1.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.en.html
 Author: acclectic
@@ -104,7 +104,11 @@ Note that the EXIF data being displayed will be in the native language in which 
 
 == Changelog ==
 
-= 1.2 - Juluy 3, 2021 =
+= 1.3 - July 6, 2021 =
+- Fixed last-image overflow.
+- Added support for custom srcset for smart galleries.
+
+= 1.2 - July 3, 2021 =
 - Added support for smart galleries.
 
 = 1.1 - March 25, 2021 = 
