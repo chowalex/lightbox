@@ -6,6 +6,7 @@
   const NUM_PRELOAD_NEIGHBORS = 2;
   const SLIDESHOW_MS = 3000;
   const DEFAULT_TITLE = i18n['untitled'];
+  const FORCE_GET_EXIF_FROM_ORIGINAL = false;
 
   const MAP_ZOOM = 16;
 
@@ -77,11 +78,8 @@
 
       // console.log(jq(galleryDoms[0]).attr('acclectic-lightbox-config'));
       galleryDoms.each((index, value, a) => {
-        console.log("Parsing gallery " + index);
         controller.parseGallery(value);
       });
-
-      console.log(galleries);
     },
 
     parseGallery: function (galleryDom) {
@@ -150,7 +148,7 @@
       }
     },
 
-    getImageSrc: function (gallery, index) {
+    getImageSrc: function (gallery, index, stripParams = false) {
       // These are the various possible sources.
       // src:         URL of image being displayed on the main page. Typically a small image.
       // dataFullUrl: URL of full image (but can be -scaled for large images). Present only for galleries.
@@ -158,7 +156,12 @@
       // srcSet:      A set of all available image sizes.
 
       // Since data-full-url is not always available, we always return src and include srcset and sizes.
-      return gallery.images[index].galleryImgDom.src;
+
+      let src = gallery.images[index].galleryImgDom.src;
+      if (stripParams) {
+        src = src.split('?')[0];
+      }
+      return src;
     },
 
     getImageSrcSet: function (gallery, index) {
@@ -243,7 +246,8 @@
     },
 
     getFilenameFromUrl: function (url) {
-      return url.split('/').pop();
+      // Some srcset values may include parameters, e.g. ?resize=.
+      return url.split('/').pop().split('?')[0];
     },
 
     isFullScreen: function () {
@@ -559,8 +563,12 @@
       // TODO: If neither EXIF/title/caption are requested, skip.
       var request = new XMLHttpRequest();
 
-      var fullPath = controller.getImageSrc(gallery, index);
-      var unscaledImageUrl = controller.getUnscaledImageUrl(fullPath);
+      var fullPath = controller.getImageSrc(gallery, index, true);
+
+      var unscaledImageUrl = fullPath;
+      if (FORCE_GET_EXIF_FROM_ORIGINAL) {
+        unscaledImageUrl = controller.getUnscaledImageUrl(fullPath);
+      }
 
       let fileInfo = {};
       fileInfo.fullPath = fullPath;
