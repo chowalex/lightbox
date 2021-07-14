@@ -3,8 +3,8 @@ Contributors: acclectic
 Tags: lightbox, gallery, exif, gps, photo gallery, map, mapping, image, photography, photo lightbox, media lightbox
 Requires at least: 5.0.0
 Tested up to: 5.7
-Stable tag: 1.3
-Version: 1.3
+Stable tag: 1.4
+Version: 1.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.en.html
 Author: acclectic
@@ -103,6 +103,11 @@ Acclectic Lightbox is available in these languages:
 Note that the EXIF data being displayed will be in the native language in which it was captured.
 
 == Changelog ==
+
+= 1.4 - July 13, 2021 =
+- Do not request original full-size image for EXIF data for performance reasons.
+- Strip parameters in src if provided.
+- Remove smart galleries from block editor, as configs for smart galleries will now be provided via meta-boxes.
 
 = 1.3 - July 6, 2021 =
 - Fixed last-image overflow.
