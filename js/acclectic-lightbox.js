@@ -194,7 +194,8 @@
     },
 
     goPrevious: function (event) {
-      event.stopPropagation ? event.stopPropagation() : event.cancelBubble = true;
+      if (event)
+        event.stopPropagation ? event.stopPropagation() : event.cancelBubble = true;
       lightbox.show(currentGallery, currentImageIndex - 1);
     },
 
@@ -767,6 +768,14 @@
       container.appendChild(titleBar);
 
       outer.appendChild(container);
+
+      var swipeHandler = new Hammer(img);
+      swipeHandler.on('swipeleft', () => {
+        controller.goNext();
+      });
+      swipeHandler.on('swiperight', () => {
+        controller.goPrevious();
+      });
       return outer;
     },
 
