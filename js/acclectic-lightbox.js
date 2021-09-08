@@ -690,6 +690,7 @@
       sliderFrame.appendChild(slider);
 
       container.appendChild(builder.getNavLeft());
+      container.appendChild(builder.getMobileMenuButton());
       container.appendChild(infoBox);
       container.appendChild(sliderFrame);
       container.appendChild(builder.getNavRight());
@@ -839,6 +840,43 @@
       navRight.appendChild(closeIcon);
       navRight.appendChild(rightArrow);
       return navRight;
+    },
+
+    getMobileMenuButton: function () {
+      let menu = document.createElement('div');
+      menu.setAttribute('id', 'mobile-menu-button');
+      menu.classList.add('lightbox-background');
+
+      let controlsUl = document.createElement('ul');
+      controlsUl.className = 'lightbox-controls';
+
+      enterFullScreen = builder.getControlIcon(FULL_SCREEN_ENTER_ICON);
+      play = builder.getControlIcon(PLAY_ICON);
+      info = builder.getControlIcon(INFO_ICON);
+      share = builder.getControlIcon(SHARE_ICON);
+      let leftArrow = builder.getControlIcon(PREV_ICON);
+      let rightArrow = builder.getControlIcon(NEXT_ICON);
+      let closeIcon = builder.getControlIcon(CLOSE_ICON);
+
+      controller.bindEventToElement(enterFullScreen, 'click', handlers.toggleFullScreen);
+      controller.bindEventToElement(info, 'click', handlers.toggleInfo);
+      controller.bindEventToElement(play, 'click', handlers.toggleSlideshow);
+      controller.bindEventToElement(share, 'click', handlers.share);
+      controller.bindEventToElement(leftArrow, 'click', controller.goPrevious);
+      controller.bindEventToElement(closeIcon, 'click', controller.handleClose);
+      controller.bindEventToElement(rightArrow, 'click', controller.goNext);
+
+      controlsUl.appendChild(enterFullScreen);
+      controlsUl.appendChild(play);
+      controlsUl.appendChild(info);
+      controlsUl.appendChild(share);
+      controlsUl.appendChild(leftArrow);
+      controlsUl.appendChild(rightArrow);
+      controlsUl.appendChild(closeIcon);
+
+      menu.appendChild(controlsUl);
+
+      return menu;
     },
 
     getTitleSection: function (titleText) {
