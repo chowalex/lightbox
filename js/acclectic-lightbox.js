@@ -164,6 +164,19 @@
       return src;
     },
 
+    getOriginalImage: function (gallery, index) {
+      // data-original tag is available only with acclectic smart galleries.
+      let dataOriginal = gallery.images[index].galleryImgDom.getAttribute('data-original');
+      if (dataOriginal) {
+        return dataOriginal.split('/').pop().split('?')[0];
+      }
+
+      // If above is not available, infer from path.            
+      let fullPath = controller.getImageSrc(gallery, index, true);
+      let unscaledImageUrl = controller.getUnscaledImageUrl(fullPath);
+      return unscaledImageUrl.split('/').pop().split('?')[0];
+    },
+
     getImageSrcSet: function (gallery, index) {
       let srcset = gallery.images[index].galleryImgDom.getAttribute('accsg-srcset');
       if (!srcset) srcset = gallery.images[index].galleryImgDom.getAttribute('srcset');
@@ -574,7 +587,8 @@
       let fileInfo = {};
       fileInfo.fullPath = fullPath;
       fileInfo.name = controller.getFilenameFromUrl(fullPath);
-      fileInfo.nameUnscaled = controller.getFilenameFromUrl(unscaledImageUrl);
+      fileInfo.nameUnscaled = controller.getOriginalImage(gallery, index);
+
       gallery.images[index].fileInfo = fileInfo;
 
       request.open('GET', unscaledImageUrl, true);
