@@ -2,9 +2,9 @@
 Contributors: acclectic
 Tags: lightbox, gallery, exif, gps, photo gallery, map, mapping, image, photography, photo lightbox, media lightbox
 Requires at least: 5.0.0
-Tested up to: 5.7
-Stable tag: 1.4
-Version: 1.4
+Tested up to: 5.8
+Stable tag: 1.5
+Version: 1.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.en.html
 Author: acclectic
@@ -48,6 +48,12 @@ The lightbox can scroll through images automatically in slideshow mode.
 
 **Keyboard bindings**
 You can control all of the lightbox's features via the mouse or the keyboard. Scroll through images, play or pause the slideshow, or toggle full-screen view with convenient key bindings.
+
+**Responsive design**
+Responsive design for seamless rendering in both desktop and mobile environments. Supports swipe gestures.
+
+**Integration across images and galleries**
+If you have multiple images or galleries on a post or page, they can share a single lightbox. Or keep them separate via a simple button click.
 
 **File information**
 Displays pertinent information about each image, including file size, date/time taken, and date/time modified. You can enable or disable the display of file information for each gallery.
@@ -103,6 +109,12 @@ Acclectic Lightbox is available in these languages:
 Note that the EXIF data being displayed will be in the native language in which it was captured.
 
 == Changelog ==
+
+= 1.5 - September 8, 2021 =
+- Add supprt for swipe gestures.
+- Add responsive rendering.
+- Fix original image name.
+- By default, combine all lightboxes on a page. Adds option to keep a lightbox separate.
 
 = 1.4 - July 13, 2021 =
 - Do not request original full-size image for EXIF data for performance reasons.

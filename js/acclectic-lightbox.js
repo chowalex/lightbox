@@ -65,6 +65,8 @@
   var info;
   var share;
 
+  var globalGallery = {};
+  const GLOBAL_GALLERY_UUID = "GLOBAL";
 
   var controller = {
     init: function () {
@@ -76,31 +78,38 @@
       let galleryDoms = jq(".wp-block-gallery, .wp-block-image, .acclectic-smart-gallery");
       console.log("Found " + galleryDoms.length + " native galleries.");
 
-      // console.log(jq(galleryDoms[0]).attr('acclectic-lightbox-config'));
       galleryDoms.each((index, value, a) => {
         controller.parseGallery(value);
       });
     },
 
     parseGallery: function (galleryDom) {
-      let gallery = {};
-      let uuid = util.getUuid();
-
-      gallery.uuid = uuid;
-      gallery.dom = galleryDom;
+      let config = {};
 
       try {
-        let config = JSON.parse(jq(galleryDom).attr(LIGHTBOX_CONFIG_ATTR));
-        gallery.configJson = config;
+        config = JSON.parse(jq(galleryDom).attr(LIGHTBOX_CONFIG_ATTR));
       } catch (e) {
         console.log("Cannot parse Lightbox configs.");
         return;
       }
 
       // Just return if lightbox is not enabled for this gallery.
-      if (!gallery.configJson.enabled) return;
+      if (!config.enabled) return;
 
-      gallery.images = [];
+      let keepSeparate = config.hasOwnProperty('keepSeparate') && config['keepSeparate'];
+      let gallery = keepSeparate ? {} : globalGallery;
+      let uuid = keepSeparate ? util.getUuid() : GLOBAL_GALLERY_UUID;
+
+      gallery.uuid = uuid;
+      gallery.dom = galleryDom;
+
+      if (!gallery.configJson) {
+        gallery.configJson = config;
+      }
+
+      if (!gallery.images) {
+        gallery.images = [];
+      }
 
       let imgElements = jq(galleryDom).find('img');
 
@@ -164,6 +173,19 @@
       return src;
     },
 
+    getOriginalImage: function (gallery, index) {
+      // data-original tag is available only with acclectic smart galleries.
+      let dataOriginal = gallery.images[index].galleryImgDom.getAttribute('data-original');
+      if (dataOriginal) {
+        return dataOriginal.split('/').pop().split('?')[0];
+      }
+
+      // If above is not available, infer from path.            
+      let fullPath = controller.getImageSrc(gallery, index, true);
+      let unscaledImageUrl = controller.getUnscaledImageUrl(fullPath);
+      return unscaledImageUrl.split('/').pop().split('?')[0];
+    },
+
     getImageSrcSet: function (gallery, index) {
       let srcset = gallery.images[index].galleryImgDom.getAttribute('accsg-srcset');
       if (!srcset) srcset = gallery.images[index].galleryImgDom.getAttribute('srcset');
@@ -194,7 +216,8 @@
     },
 
     goPrevious: function (event) {
-      event.stopPropagation ? event.stopPropagation() : event.cancelBubble = true;
+      if (event)
+        event.stopPropagation ? event.stopPropagation() : event.cancelBubble = true;
       lightbox.show(currentGallery, currentImageIndex - 1);
     },
 
@@ -241,7 +264,6 @@
       }
 
       unscaledUrl = url.replace(fileName, unscaledFileName);
-      console.log("Replacing " + url + " with " + unscaledUrl);
       return unscaledUrl;
     },
 
@@ -573,7 +595,8 @@
       let fileInfo = {};
       fileInfo.fullPath = fullPath;
       fileInfo.name = controller.getFilenameFromUrl(fullPath);
-      fileInfo.nameUnscaled = controller.getFilenameFromUrl(unscaledImageUrl);
+      fileInfo.nameUnscaled = controller.getOriginalImage(gallery, index);
+
       gallery.images[index].fileInfo = fileInfo;
 
       request.open('GET', unscaledImageUrl, true);
@@ -689,6 +712,7 @@
       sliderFrame.appendChild(slider);
 
       container.appendChild(builder.getNavLeft());
+      container.appendChild(builder.getMobileMenuButton());
       container.appendChild(infoBox);
       container.appendChild(sliderFrame);
       container.appendChild(builder.getNavRight());
@@ -767,6 +791,14 @@
       container.appendChild(titleBar);
 
       outer.appendChild(container);
+
+      var swipeHandler = new Hammer(img);
+      swipeHandler.on('swipeleft', () => {
+        controller.goNext();
+      });
+      swipeHandler.on('swiperight', () => {
+        controller.goPrevious();
+      });
       return outer;
     },
 
@@ -830,6 +862,43 @@
       navRight.appendChild(closeIcon);
       navRight.appendChild(rightArrow);
       return navRight;
+    },
+
+    getMobileMenuButton: function () {
+      let menu = document.createElement('div');
+      menu.setAttribute('id', 'mobile-menu-button');
+      menu.classList.add('lightbox-background');
+
+      let controlsUl = document.createElement('ul');
+      controlsUl.className = 'lightbox-controls';
+
+      enterFullScreen = builder.getControlIcon(FULL_SCREEN_ENTER_ICON);
+      play = builder.getControlIcon(PLAY_ICON);
+      info = builder.getControlIcon(INFO_ICON);
+      share = builder.getControlIcon(SHARE_ICON);
+      let leftArrow = builder.getControlIcon(PREV_ICON);
+      let rightArrow = builder.getControlIcon(NEXT_ICON);
+      let closeIcon = builder.getControlIcon(CLOSE_ICON);
+
+      controller.bindEventToElement(enterFullScreen, 'click', handlers.toggleFullScreen);
+      controller.bindEventToElement(info, 'click', handlers.toggleInfo);
+      controller.bindEventToElement(play, 'click', handlers.toggleSlideshow);
+      controller.bindEventToElement(share, 'click', handlers.share);
+      controller.bindEventToElement(leftArrow, 'click', controller.goPrevious);
+      controller.bindEventToElement(closeIcon, 'click', controller.handleClose);
+      controller.bindEventToElement(rightArrow, 'click', controller.goNext);
+
+      controlsUl.appendChild(enterFullScreen);
+      controlsUl.appendChild(play);
+      controlsUl.appendChild(info);
+      controlsUl.appendChild(share);
+      controlsUl.appendChild(leftArrow);
+      controlsUl.appendChild(rightArrow);
+      controlsUl.appendChild(closeIcon);
+
+      menu.appendChild(controlsUl);
+
+      return menu;
     },
 
     getTitleSection: function (titleText) {

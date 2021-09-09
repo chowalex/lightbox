@@ -97,6 +97,63 @@
   font-size: 22px;
 }
 
+#acclectic-lightbox-container #mobile-menu-button {
+  display: none;
+}
+
+@media screen and (max-width: 960px) {
+  #acclectic-lightbox-container {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+  }
+  #acclectic-lightbox-container #nav-left {
+    display: none;
+  }
+  #acclectic-lightbox-container #info {
+    display: none;
+  }
+  #acclectic-lightbox-container #info.visible {
+    display: block;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    max-height: 50%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    opacity: 0.85;
+  }
+  #acclectic-lightbox-container #nav-right {
+    display: none;
+  }
+  #acclectic-lightbox-container #mobile-menu-button {
+    display: block;
+    opacity: 0.85;
+    max-width: 90%;
+    position: absolute;
+    top: 0px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    z-index: 16777271;
+  }
+  #acclectic-lightbox-container .lightbox-controls {
+    height: 25px;
+    width: max-content;
+  }
+  #acclectic-lightbox-container .lightbox-controls li {
+    display: inline-block;
+    height: 25px;
+  }
+  #acclectic-lightbox-container .lightbox-controls li img {
+    margin: 0px 10px 0px 10px;
+  }
+}
+
 /* Deprecated.
 #acclectic-lightbox-container #info .info-caption {
   font-size: 18px;
@@ -149,7 +206,9 @@
   border: 0;
 }
 
-#acclectic-lightbox-container #slider-frame {}
+#acclectic-lightbox-container #slider-frame {
+  height: 100%;
+}
 
 #acclectic-lightbox-container #nav-right {
   /* At maximum. */

@@ -64,6 +64,13 @@ class Controller
             ACCLECTIC_LIGHTBOX_PLUGIN_NAME,
             false/* in_footer */);
 
+        wp_register_script(
+            'hammerjs',
+            esc_url(ACCLECTIC_LIGHTBOX_THIRD_PARTY_URL . 'hammerjs/hammer.min.js'),
+            [],
+            ACCLECTIC_LIGHTBOX_PLUGIN_NAME,
+            false/* in_footer */);
+
         wp_localize_script(
             'acclectic-lightbox',
             'config',
@@ -86,6 +93,7 @@ class Controller
         wp_enqueue_script('acclectic-lightbox');
         wp_enqueue_script('exif-js');
         wp_enqueue_script('srcset');
+        wp_enqueue_script('hammerjs');
     }
 
     public function enqueueBlockEditorAssets()
