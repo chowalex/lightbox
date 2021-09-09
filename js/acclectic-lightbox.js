@@ -65,6 +65,8 @@
   var info;
   var share;
 
+  var globalGallery = {};
+  const GLOBAL_GALLERY_UUID = "GLOBAL";
 
   var controller = {
     init: function () {
@@ -76,31 +78,38 @@
       let galleryDoms = jq(".wp-block-gallery, .wp-block-image, .acclectic-smart-gallery");
       console.log("Found " + galleryDoms.length + " native galleries.");
 
-      // console.log(jq(galleryDoms[0]).attr('acclectic-lightbox-config'));
       galleryDoms.each((index, value, a) => {
         controller.parseGallery(value);
       });
     },
 
     parseGallery: function (galleryDom) {
-      let gallery = {};
-      let uuid = util.getUuid();
-
-      gallery.uuid = uuid;
-      gallery.dom = galleryDom;
+      let config = {};
 
       try {
-        let config = JSON.parse(jq(galleryDom).attr(LIGHTBOX_CONFIG_ATTR));
-        gallery.configJson = config;
+        config = JSON.parse(jq(galleryDom).attr(LIGHTBOX_CONFIG_ATTR));
       } catch (e) {
         console.log("Cannot parse Lightbox configs.");
         return;
       }
 
       // Just return if lightbox is not enabled for this gallery.
-      if (!gallery.configJson.enabled) return;
+      if (!config.enabled) return;
 
-      gallery.images = [];
+      let keepSeparate = config.hasOwnProperty('keepSeparate') && config['keepSeparate'];
+      let gallery = keepSeparate ? {} : globalGallery;
+      let uuid = keepSeparate ? util.getUuid() : GLOBAL_GALLERY_UUID;
+
+      gallery.uuid = uuid;
+      gallery.dom = galleryDom;
+
+      if (!gallery.configJson) {
+        gallery.configJson = config;
+      }
+
+      if (!gallery.images) {
+        gallery.images = [];
+      }
 
       let imgElements = jq(galleryDom).find('img');
 
@@ -255,7 +264,6 @@
       }
 
       unscaledUrl = url.replace(fileName, unscaledFileName);
-      console.log("Replacing " + url + " with " + unscaledUrl);
       return unscaledUrl;
     },
 

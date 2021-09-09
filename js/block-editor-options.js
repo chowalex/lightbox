@@ -63,6 +63,10 @@ const addLightboxAttributes = (settings, name) => {
       type: 'boolean',
       default: true
     },
+    keepSeparate: {
+      type: 'boolean',
+      default: false
+    }
   });
 
   return settings;
@@ -88,6 +92,7 @@ const addLightboxControls = createHigherOrderComponent(BlockEdit => {
     const { showFileInfo } = props.attributes;
     const { showKeywords } = props.attributes;
     const { showGps } = props.attributes;
+    const { keepSeparate } = props.attributes;
 
     // Add class to block. This is used only in the editor, in cases where the preview needs to change based on attribute.
     if (lightboxEnabled) {
@@ -191,6 +196,16 @@ const addLightboxControls = createHigherOrderComponent(BlockEdit => {
                 });
               }
             }),
+            React.createElement(CheckboxControl, {
+              label: __('Keep separate'),
+              help: __('Keeps this lightbox separate from other lightboxes on this page. By default, all galleries and images with lightboxes enabled share a lightbox.'),
+              checked: keepSeparate,
+              onChange: keepSeparateSelection => {
+                props.setAttributes({
+                  keepSeparate: keepSeparateSelection
+                });
+              }
+            }),
           )
         )
       )
@@ -223,6 +238,11 @@ const addLightboxProps = (saveElementProps, blockType, attributes) => {
   lightboxConfig['showFileInfo'] = attributes.showFileInfo;
   lightboxConfig['showKeywords'] = attributes.showKeywords;
   lightboxConfig['showGps'] = attributes.showGps;
+
+  // Only populate this if set to prevent block editor errors.
+  if (attributes.keepSeparate) {
+    lightboxConfig['keepSeparate'] = attributes.keepSeparate;
+  }
 
   assign(saveElementProps, {
     'acclectic-lightbox-config': JSON.stringify(lightboxConfig)
