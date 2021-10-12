@@ -66,6 +66,7 @@
   var share;
 
   var globalGallery = {};
+  var globalIndex = 0;
   const GLOBAL_GALLERY_UUID = "GLOBAL";
 
   var controller = {
@@ -116,9 +117,10 @@
       // Note: imgElements is array-like but not exactly an array.
       [].forEach.call(imgElements, function (imgElement, index) {
         let image = {};
-        controller.bindEventToElement(imgElement, 'click', handlers.imageClick(gallery, index));
+        controller.bindEventToElement(imgElement, 'click', handlers.imageClick(gallery, keepSeparate ? index : globalIndex));
         image.galleryImgDom = imgElement;
         gallery.images.push(image);
+        globalIndex++;
       })
 
       galleries[uuid] = gallery;

@@ -3,7 +3,7 @@
  * Plugin Name: Acclectic Lightbox
  * Plugin URI:  https://www.acclectic.com/
  * Description: An EXIF-enabled lightbox that works with native Wordpress images and galleries, with GPS mapping support.
- * Version:     1.5
+ * Version:     1.6
  * Author:      Acclectic Media
  * Author URI:  https://www.acclectic.com
  * Text Domain: acclectic-lightbox

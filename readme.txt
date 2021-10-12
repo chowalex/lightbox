@@ -2,9 +2,9 @@
 Contributors: acclectic
 Tags: lightbox, gallery, exif, gps, photo gallery, map, mapping, image, photography, photo lightbox, media lightbox
 Requires at least: 5.0.0
-Tested up to: 5.8
-Stable tag: 1.5
-Version: 1.5
+Tested up to: 5.8.1
+Stable tag: 1.6
+Version: 1.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.en.html
 Author: acclectic
@@ -109,6 +109,9 @@ Acclectic Lightbox is available in these languages:
 Note that the EXIF data being displayed will be in the native language in which it was captured.
 
 == Changelog ==
+
+= 1.6 - October 12, 2021 =
+- Fixes bug where clicking on any image/gallery after the first (with multiple galleries merged into a single gallery) shows the wrong image.
 
 = 1.5 - September 8, 2021 =
 - Add supprt for swipe gestures.
