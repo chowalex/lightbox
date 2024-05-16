@@ -8,7 +8,6 @@ Version: 1.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.en.html
 Author: acclectic
-Donate link: https://www.acclectic.com/
 
 A configurable lightbox with EXIF and GPS mapping support that works with native Wordpress galleries and images.
 
